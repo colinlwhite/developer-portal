@@ -8,7 +8,6 @@ import './App.css';
 import authRequests from '../helpers/data/authRequests';
 import Bio from '../components/Bio/Bio';
 import Add from '../components/Add/Add';
-import Forms from '../components/Forms/Forms';
 import Listings from '../components/Listings/Listings';
 
 class App extends Component {
@@ -60,7 +59,6 @@ class App extends Component {
       <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
       <Bio />
        <Add />
-       <Forms />
        <Listings />
       </div>
     );

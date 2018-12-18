@@ -5,7 +5,7 @@ class Bio extends React.Component {
   render() {
     return (
       <div className="bio">
-        <h2>Bio</h2>
+        <h2>Github Profile</h2>
       </div>
     );
   }
