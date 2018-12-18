@@ -8,7 +8,6 @@ import './App.css';
 import authRequests from '../helpers/data/authRequests';
 import Bio from '../components/Bio/Bio';
 import Add from '../components/Add/Add';
-import Forms from '../components/Forms/Forms';
 import Listings from '../components/Listings/Listings';
 
 class App extends Component {
@@ -49,7 +48,9 @@ class App extends Component {
       return (
         <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
+        <div className="row">
        <Auth isAuthenticated={this.isAuthenticated}/>
+       </div>
         </div>
       );
     }
@@ -58,10 +59,13 @@ class App extends Component {
     return (
       <div className="App">
       <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
+      <div className="row">
       <Bio />
+      </div>
+      <div className="row">
        <Add />
-       <Forms />
        <Listings />
+       </div>
       </div>
     );
   }

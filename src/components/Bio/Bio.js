@@ -4,8 +4,8 @@ import './Bio.scss';
 class Bio extends React.Component {
   render() {
     return (
-      <div className="bio">
-        <h2>Bio</h2>
+      <div className="bio col">
+        <h2>Github Profile</h2>
       </div>
     );
   }

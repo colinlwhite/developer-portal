@@ -4,8 +4,8 @@ import './Listings.scss';
 class Listings extends React.Component {
   render() {
     return (
-      <div className="listings">
-        <h2>Listings</h2>
+      <div className="listings col">
+        <h2>Learning Materials</h2>
       </div>
     );
   }
