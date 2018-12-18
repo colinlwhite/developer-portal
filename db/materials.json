@@ -1,0 +1,34 @@
+{
+  "materials": {
+    "material0": {
+      "name": "Test Name",
+      "link": "https://www.google.com/",
+      "category": "Test Category",
+      "uid": "6BaSiT4NmOXGHditTZ6Wo5nSljw2"
+    },
+    "material1": {
+      "name": "Test Name",
+      "link": "https://www.google.com/",
+      "category": "Test Category",
+      "uid": "6BaSiT4NmOXGHditTZ6Wo5nSljw2"
+    },
+    "material2": {
+      "name": "Test Name",
+      "link": "https://www.google.com/",
+      "category": "Test Category",
+      "uid": "6BaSiT4NmOXGHditTZ6Wo5nSljw2"
+    },
+    "material3": {
+      "name": "Test Name",
+      "link": "https://www.google.com/",
+      "category": "Test Category",
+      "uid": "6BaSiT4NmOXGHditTZ6Wo5nSljw2"
+    },
+    "material4": {
+      "name": "Test Name",
+      "link": "https://www.google.com/",
+      "category": "Test Category",
+      "uid": "6BaSiT4NmOXGHditTZ6Wo5nSljw2"
+    }
+  }
+}
