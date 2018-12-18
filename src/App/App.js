@@ -4,6 +4,7 @@ import 'firebase/auth';
 import connection from '../helpers/data/connection';
 import Auth from '../components/Auth/Auth';
 import MyNavbar from '../components/MyNavbar/MyNavbar';
+import materialsRequest from '../helpers/data/materialsRequest';
 import './App.css';
 import authRequests from '../helpers/data/authRequests';
 import Bio from '../components/Bio/Bio';
@@ -13,10 +14,17 @@ import Listings from '../components/Listings/Listings';
 class App extends Component {
   state = {
     authed: false,
+    materials: [],
   }
 
   componentDidMount() {
     connection();
+    materialsRequest.getRequest()
+      .then((materials) => {
+        this.setState({ materials });
+      })
+      .catch(err => console.error('error with materials', err));
+
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
@@ -64,7 +72,7 @@ class App extends Component {
       </div>
       <div className="row">
        <Add />
-       <Listings />
+       <Listings materials={this.state.materials} />
        </div>
       </div>
     );
