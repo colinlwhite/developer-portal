@@ -15,7 +15,7 @@ class Listings extends React.Component {
     return (
       <div className="listings col">
         <h2>Learning Materials</h2>
-        {materialItemComponents}
+        <ul>{materialItemComponents}</ul>
       </div>
     );
   }
