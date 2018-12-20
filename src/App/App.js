@@ -46,6 +46,17 @@ class App extends Component {
     this.setState({ authed: true });
   }
 
+  deleteOne = (materialId) => {
+    materialsRequest.deleteResource(materialId)
+      .then(() => {
+        materialsRequest.getRequest()
+          .then((materials) => {
+            this.setState({ materials });
+          });
+      })
+      .catch(err => console.error('error with delete single', err));
+  }
+
   render() {
     const logoutClickEvent = () => {
       authRequests.logoutUser();
@@ -72,7 +83,10 @@ class App extends Component {
       </div>
       <div className="row">
        <Add />
-       <Listings materials={this.state.materials} />
+       <Listings
+       materials={this.state.materials}
+       deleteSingleResource={this.deleteOne}
+       />
        </div>
       </div>
     );
