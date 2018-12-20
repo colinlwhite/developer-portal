@@ -57,6 +57,17 @@ class App extends Component {
       .catch(err => console.error('error with delete single', err));
   }
 
+  formSubmitEvent = (newMaterial) => {
+    materialsRequest.postRequest(newMaterial)
+      .then(() => {
+        materialsRequest.getRequest()
+          .then((materials) => {
+            this.setState({ materials });
+          });
+      })
+      .catch(err => console.error('error with listings post', err));
+  }
+
   render() {
     const logoutClickEvent = () => {
       authRequests.logoutUser();
@@ -82,7 +93,7 @@ class App extends Component {
       <Bio />
       </div>
       <div className="row">
-       <Add />
+       <Add onSubmit={this.formSubmitEvent} />
        <Listings
        materials={this.state.materials}
        deleteSingleResource={this.deleteOne}

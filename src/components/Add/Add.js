@@ -1,4 +1,5 @@
 import React from 'react';
+import authRequests from '../../helpers/data/authRequests';
 import './Add.scss';
 
 const defaultListing = {
@@ -22,12 +23,22 @@ class Add extends React.Component {
 
   resourceChange = e => this.formFieldStringState('name', e);
 
+  formSubmit = (e) => {
+    e.preventDefault();
+    const { onSubmit } = this.props;
+    const myResource = { ...this.state.newResource };
+    myResource.uid = authRequests.getCurrentUid();
+    onSubmit(myResource);
+    this.setState({ newResource: defaultListing });
+  }
+
+
   render() {
     const { newResource } = this.state;
     return (
       <div className="Add col">
         <h2>Add Learning Material</h2>
-        <form>
+        <form onSubmit={this.formSubmit}>
           <div className="form-group">
             <label htmlFor="resource">Resource:</label>
             <input
