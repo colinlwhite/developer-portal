@@ -3,6 +3,12 @@ import authRequests from '../../helpers/data/authRequests';
 import './ListingItem.scss';
 
 class ListingItem extends React.Component {
+  deleteEvent = (e) => {
+    e.preventDefault();
+    const { deleteSingleResource, material } = this.props;
+    deleteSingleResource(material.id);
+  }
+
   render() {
     const { material } = this.props;
     const uid = authRequests.getCurrentUid();
@@ -12,7 +18,7 @@ class ListingItem extends React.Component {
         return (
           <div>
             <span className="col">
-              <button className="btn btn-default">
+              <button className="btn btn-default" onClick={this.deleteEvent}>
               <i className="fas fa-trash-alt"></i>
               </button>
             </span>
