@@ -23,9 +23,14 @@ const deleteResource = materialId => axios.delete(`${firebaseUrl}/materials/${ma
 
 const postRequest = material => axios.post(`${firebaseUrl}/materials.json`, material);
 
+const getSingleResource = materialId => axios.get(`${firebaseUrl}/materials/${materialId}.json`);
+
+const putRequest = (materialId, material) => axios.put(`${firebaseUrl}/materials/${materialId}.json`, material);
 
 export default {
   getRequest,
   deleteResource,
   postRequest,
+  getSingleResource,
+  putRequest,
 };

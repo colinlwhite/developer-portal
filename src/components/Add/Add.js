@@ -1,5 +1,6 @@
 import React from 'react';
 import authRequests from '../../helpers/data/authRequests';
+import materialsRequest from '../../helpers/data/materialsRequest';
 import './Add.scss';
 
 const defaultListing = {
@@ -32,12 +33,29 @@ class Add extends React.Component {
     this.setState({ newResource: defaultListing });
   }
 
+  componentDidUpdate(prevProps) {
+    const { isEditing, editId } = this.props;
+    if (prevProps !== this.props && isEditing) {
+      materialsRequest.getSingleResource(editId)
+        .then((material) => {
+          this.setState({ newListing: material.data });
+        })
+        .catch(err => console.error('error with getSingleListing', err));
+    }
+  }
 
   render() {
     const { newResource } = this.state;
+    const { isEditing } = this.props;
+    const title = () => {
+      if (isEditing) {
+        return <h2>Edit Resource:</h2>;
+      }
+      return <h2>Add New Material:</h2>;
+    };
     return (
       <div className="Add col">
-        <h2>Add Learning Material</h2>
+        {title()}
         <form onSubmit={this.formSubmit}>
           <div className="form-group">
             <label htmlFor="resource">Resource:</label>

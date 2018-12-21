@@ -5,12 +5,13 @@ import './Listings.scss';
 
 class Listings extends React.Component {
   render() {
-    const { materials, deleteSingleResource } = this.props;
+    const { materials, deleteSingleResource, passResourceToEdit } = this.props;
     const materialItemComponents = materials.map(material => (
       <ListingItem
         material={material}
         key={material.id}
         deleteSingleResource={deleteSingleResource}
+        passResourceToEdit={passResourceToEdit}
         />
     ));
     return (
