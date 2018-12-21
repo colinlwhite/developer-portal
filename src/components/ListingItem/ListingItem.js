@@ -9,6 +9,12 @@ class ListingItem extends React.Component {
     deleteSingleResource(material.id);
   }
 
+  editEvent = (e) => {
+    e.preventDefault();
+    const { passResourceToEdit, material } = this.props;
+    passResourceToEdit(material.id);
+  }
+
   render() {
     const { material } = this.props;
     const uid = authRequests.getCurrentUid();
@@ -17,6 +23,11 @@ class ListingItem extends React.Component {
       if (material.uid === uid) {
         return (
           <div>
+             <span className="col">
+              <button className="btn btn-default" onClick={this.editEvent}>
+              <i className="fas fa-pencil-alt"></i>
+              </button>
+            </span>
             <span className="col">
               <button className="btn btn-default" onClick={this.deleteEvent}>
               <i className="fas fa-trash-alt"></i>

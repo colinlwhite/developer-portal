@@ -15,6 +15,8 @@ class App extends Component {
   state = {
     authed: false,
     materials: [],
+    isEditing: false,
+    editId: '-1',
   }
 
   componentDidMount() {
@@ -58,26 +60,47 @@ class App extends Component {
   }
 
   formSubmitEvent = (newMaterial) => {
-    materialsRequest.postRequest(newMaterial)
-      .then(() => {
-        materialsRequest.getRequest()
-          .then((materials) => {
-            this.setState({ materials });
-          });
-      })
-      .catch(err => console.error('error with listings post', err));
+    const { isEditing, editId } = this.state;
+    if (isEditing) {
+      materialsRequest.putRequest(editId, newMaterial)
+        .then(() => {
+          materialsRequest.getRequest()
+            . then((materials) => {
+              this.setState({ materials, isEditing: false, editId: '-1' });
+            });
+        })
+        .catch(err => console.error('error with listings post', err));
+    } else {
+      materialsRequest.postRequest(newMaterial)
+        .then(() => {
+          materialsRequest.getRequest()
+            .then((materials) => {
+              this.setState({ materials });
+            });
+        })
+        .catch(err => console.error('error with listings post', err));
+    }
   }
 
+  passResourceToEdit = materialId => this.setState({ isEditing: true, editId: materialId });
+
   render() {
+    const {
+      authed,
+      materials,
+      isEditing,
+      editId,
+    } = this.state;
+
     const logoutClickEvent = () => {
       authRequests.logoutUser();
       this.setState({ authed: false });
     };
 
-    if (!this.state.authed) {
+    if (!authed) {
       return (
         <div className="App">
-        <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
+        <MyNavbar isAuthed={authed} logoutClickEvent={logoutClickEvent} />
         <div className="row">
        <Auth isAuthenticated={this.isAuthenticated}/>
        </div>
@@ -88,15 +111,16 @@ class App extends Component {
 
     return (
       <div className="App">
-      <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
+      <MyNavbar isAuthed={authed} logoutClickEvent={logoutClickEvent} />
       <div className="row">
       <Bio />
       </div>
       <div className="row">
-       <Add onSubmit={this.formSubmitEvent} />
+       <Add onSubmit={this.formSubmitEvent} isEditing={isEditing} editId={editId} />
        <Listings
-       materials={this.state.materials}
+       materials={materials}
        deleteSingleResource={this.deleteOne}
+       passResourceToEdit={this.passResourceToEdit}
        />
        </div>
       </div>
