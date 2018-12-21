@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ListingItem from '../ListingItem/ListingItem';
 import './Listings.scss';
 

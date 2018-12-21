@@ -19,6 +19,7 @@ class Add extends React.Component {
     e.preventDefault();
     const tempListing = { ...this.state.newResource };
     tempListing[name] = e.target.value;
+    console.log(tempListing);
     this.setState({ newResource: tempListing });
   }
 
