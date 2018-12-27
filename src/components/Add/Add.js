@@ -39,7 +39,7 @@ class Add extends React.Component {
     if (prevProps !== this.props && isEditing) {
       materialsRequest.getSingleResource(editId)
         .then((material) => {
-          this.setState({ newListing: material.data });
+          this.setState({ newResource: material.data });
         })
         .catch(err => console.error('error with getSingleListing', err));
     }
